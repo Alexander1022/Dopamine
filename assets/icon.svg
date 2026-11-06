@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- Dopamine app icon: the dopamine molecule (catechol ring, two hydroxyls, ethylamine chain). Rendered to icon.png and Dopamine.icns with rsvg-convert and iconutil. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5ee391"/>
+      <stop offset="0.55" stop-color="#1aae62"/>
+      <stop offset="1" stop-color="#085a54"/>
+    </linearGradient>
+    <radialGradient id="shine" cx="0.3" cy="0.2" r="0.8">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#bg)"/>
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#shine)"/>
+  <g filter="url(#glow)" stroke="#fff" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M534.11 577.63 479.11 482.37H369.11L314.11 577.63 369.11 672.89H479.11Z"/>
+    <circle cx="424.11" cy="577.63" r="52" stroke-width="22" stroke-opacity="0.85"/>
+    <path d="M369.11 482.37 314.11 387.11M314.11 577.63H204.11M534.11 577.63 629.37 522.63 724.63 577.63 819.89 522.63"/>
+  </g>
+  <g filter="url(#glow)">
+    <circle cx="314.11" cy="387.11" r="32" fill="#fff"/>
+    <circle cx="204.11" cy="577.63" r="32" fill="#fff"/>
+    <circle cx="819.89" cy="522.63" r="36" fill="#f4ff8a"/>
+  </g>
+</svg>

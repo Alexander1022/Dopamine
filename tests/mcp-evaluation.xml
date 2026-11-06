@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<evaluation>
+  <!-- Use the isolated immutable fixture in verify_mcp_evaluation.py, never a user's live history. -->
+  <qa_pair><question>In the evaluation capture, inspect successful authentication exchanges. Which raw response header names the identity behind the newest successful session? Return its value only.</question><answer>qa-viewer</answer></qa_pair>
+  <qa_pair><question>Compare the saved cart POST attempts and inspect the failed attempt's body. What error code explains the rejected cart? Return the code only.</question><answer>OUT_OF_STOCK</answer></qa_pair>
+  <qa_pair><question>Find the export exchange, read its response, and decode the Base64 job label it contains. What label is it?</question><answer>inventory-october</answer></qa_pair>
+  <qa_pair><question>Compare the newest saved catalog request with the oldest catalog request. Which X-Revision value was introduced in the newer request?</question><answer>r2</answer></qa_pair>
+  <qa_pair><question>Search the evaluation's failed exchanges, inspect their metadata and raw messages, and identify the HTTP method used by the TLS failure.</question><answer>GET</answer></qa_pair>
+  <qa_pair><question>Use target summaries and history pages to identify which origin has the largest captured request count. Return the origin only.</question><answer>https://shop.dopamine.test</answer></qa_pair>
+  <qa_pair><question>Inspect both successful cart creations. Which SKU appears in the request body for the later successful creation?</question><answer>OLIVE-42</answer></qa_pair>
+  <qa_pair><question>Find the cart attempt that returned 409 and compare its body to successful attempts. How many cart POST captures in total used that same SKU? Return the integer.</question><answer>2</answer></qa_pair>
+  <qa_pair><question>Find and read the long export response across bounded pages. What X-Export-Checksum value appears after its padding?</question><answer>leaf-778</answer></qa_pair>
+  <qa_pair><question>Inspect the latest catalog response and URL-decode its encoded next-page link. Return the decoded relative path.</question><answer>/catalog?cursor=olive+green</answer></qa_pair>
+</evaluation>

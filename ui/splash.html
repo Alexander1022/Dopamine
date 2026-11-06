@@ -1,0 +1,60 @@
+<!doctype html>
+<!-- Startup splash shown while the engine starts. Desktop.swift sets data-theme, plays the chime as it loads and adds class "leaving" before loading the UI. -->
+<html data-theme="dark"><head><meta charset="utf-8"><style>
+:root{--ground:#161618;--text:#eef4ef;--muted:#8d998f;--ring:#4fe390;--chain:#22c7b4;--amine:#e8ff6e;--bloom:#2ecc7133;--bloom2:#22c7b41f;--track:#ffffff14;--glow:#4fe39059}
+[data-theme=light]{--ground:#f2f3f0;--text:#16201a;--muted:#5a695f;--ring:#14a858;--chain:#0d968a;--amine:#9cc20c;--bloom:#3ad27a2e;--bloom2:#1cc0ae22;--track:#0000000f;--glow:#14a85840}
+html{background:var(--ground)}
+html,body{height:100%;margin:0;overflow:hidden;cursor:default;-webkit-user-select:none;user-select:none}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;font:13px -apple-system,system-ui,sans-serif;color:var(--muted);transition:opacity .28s ease,transform .28s ease}
+.leaving body{opacity:0;transform:scale(1.02)}
+/* Two soft blooms drift behind the mark. */
+body::before,body::after{content:"";position:fixed;width:620px;height:620px;border-radius:50%;pointer-events:none;z-index:-1;opacity:0;animation:bloom .9s ease-out forwards,drift 7s ease-in-out .9s infinite alternate}
+body::before{background:radial-gradient(closest-side,var(--bloom),transparent);left:calc(50% - 400px);top:calc(50% - 360px)}
+body::after{background:radial-gradient(closest-side,var(--bloom2),transparent);left:calc(50% - 200px);top:calc(50% - 250px);animation-direction:normal,alternate-reverse}
+/* The viewBox leaves room around the molecule so the amine's pop and ripple are never clipped by the filters. */
+svg{width:340px;height:auto;overflow:visible;filter:drop-shadow(0 0 16px var(--glow));animation:flash .5s cubic-bezier(.2,.9,.3,1) .45s}
+.bond{fill:none;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw .38s cubic-bezier(.5,0,.2,1) forwards}
+.ring{stroke:url(#grad);--len:700}
+.aroma{fill:none;stroke:url(#grad);stroke-width:12;stroke-opacity:.75;stroke-dasharray:330;stroke-dashoffset:330;animation:draw .3s ease-out .2s forwards}
+.arms{stroke:var(--ring);--len:240;animation-delay:.12s}
+.chain{stroke:url(#grad);--len:440;animation-delay:.18s}
+.atom{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:pop .4s cubic-bezier(.3,1.7,.5,1) forwards}
+.oh{fill:var(--ring)}.oh1{animation-delay:.28s}.oh2{animation-delay:.33s}
+.nh{fill:var(--amine);animation:pop .45s cubic-bezier(.3,1.7,.5,1) .45s forwards,pulse 1.8s ease-in-out 1s infinite}
+/* The ripple that spreads from the amine atom as it lands. */
+.ripple{fill:none;stroke:var(--amine);stroke-width:4;transform-box:fill-box;transform-origin:center;opacity:0;animation:ripple .8s cubic-bezier(.2,.7,.3,1) .45s forwards}
+h1{margin:0;font-size:32px;font-weight:600;letter-spacing:-.02em;color:var(--text);display:flex}
+h1 span{opacity:0;transform:translateY(8px);filter:blur(4px);animation:rise .45s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(.32s + var(--i) * 30ms)}
+p{margin:0;opacity:0;animation:fade .4s ease .75s forwards;letter-spacing:.01em}
+.bar{width:120px;height:2px;border-radius:2px;background:var(--track);overflow:hidden;opacity:0;animation:fade .4s ease .75s forwards}
+.bar::after{content:"";display:block;width:40%;height:100%;border-radius:2px;background:linear-gradient(90deg,transparent,var(--ring),var(--chain),transparent);animation:sweep 1.1s cubic-bezier(.5,0,.5,1) .75s infinite;transform:translateX(-100%)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{to{transform:scale(1)}}
+/* The bell in assets/make-startup-sound.py (HIT) rings with this flash. */
+@keyframes flash{0%,100%{transform:none;filter:drop-shadow(0 0 16px var(--glow))}30%{transform:scale(1.03);filter:drop-shadow(0 0 22px var(--glow)) brightness(1.35) saturate(1.2)}}
+@keyframes ripple{0%{opacity:.8;transform:scale(1)}100%{opacity:0;transform:scale(2.6)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+@keyframes rise{to{opacity:1;transform:none;filter:none}}
+@keyframes fade{to{opacity:1}}
+@keyframes bloom{to{opacity:1}}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(60px,40px) scale(1.12)}}
+@keyframes sweep{to{transform:translateX(250%)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.bond,.aroma{stroke-dashoffset:0}.atom{transform:none}h1 span,p,.bar,body::before,body::after{opacity:1;transform:none;filter:none}}
+</style></head><body>
+<svg viewBox="140 320 744 416" role="img" aria-label="Dopamine molecule">
+  <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--ring)"/><stop offset="1" style="stop-color:var(--chain)"/></linearGradient></defs>
+  <g>
+    <path class="bond ring" d="M534.11 577.63 479.11 482.37H369.11L314.11 577.63 369.11 672.89H479.11Z"/>
+    <circle class="aroma" cx="424.11" cy="577.63" r="52"/>
+    <path class="bond arms" d="M369.11 482.37 314.11 387.11M314.11 577.63H204.11"/>
+    <path class="bond chain" d="M534.11 577.63 629.37 522.63 724.63 577.63 819.89 522.63"/>
+    <circle class="atom oh oh1" cx="314.11" cy="387.11" r="26"/>
+    <circle class="atom oh oh2" cx="204.11" cy="577.63" r="26"/>
+    <circle class="ripple" cx="819.89" cy="522.63" r="30"/>
+    <circle class="atom nh" cx="819.89" cy="522.63" r="30"/>
+  </g>
+</svg>
+<h1 aria-label="Dopamine"><span style="--i:0">D</span><span style="--i:1">o</span><span style="--i:2">p</span><span style="--i:3">a</span><span style="--i:4">m</span><span style="--i:5">i</span><span style="--i:6">n</span><span style="--i:7">e</span></h1>
+<div class="bar" aria-hidden="true"></div>
+<p>Starting engine</p>
+</body></html>

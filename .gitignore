@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Build output (./build.sh, ./release.sh)
+/Dopamine.app/
+/build/
+/dist/
+__pycache__/
+
+# Local leftovers from earlier builds and design passes
+/.taste-skill/
+
+# Private research notes, not published
+/docs/DESIGN.md
+/docs/RECONSTRUCTION.md
+/docs/COMPARISON.md
+/docs/evidence-summary.json
+
+# Older preview screenshots not referenced by the docs
+/docs/images/curl-import-preview.png
+/docs/images/design-preview.png
+/docs/images/dopamine-preview.png
+/docs/images/dopamine-workflows.png
+/docs/images/intercept-preview.png
+/docs/images/mcp-preview.png
+/docs/images/preview.png

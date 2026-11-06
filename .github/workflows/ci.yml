@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Engine, HTTPS and MCP tests
+        run: /usr/bin/python3 -m unittest discover -v -s tests
+      - name: MCP evaluation fixture
+        run: /usr/bin/python3 tests/verify_mcp_evaluation.py
+      - name: Install script
+        run: (command -v shellcheck || brew install shellcheck) && shellcheck install.sh
+      - name: UI checks
+        run: node tests/test_curl.js && node tests/test_intercept_ui.js
+      - name: Build
+        run: ./build.sh
